@@ -46,7 +46,7 @@ var features = providers.DocumentationNotes{
 	providers.CanUseSSHFP:            providers.Can(),
 	providers.CanUseCAA:              providers.Can(),
 	providers.CanUseTLSA:             providers.Can(),
-	providers.CanUsePTR:              providers.Unimplemented(),
+	providers.CanUsePTR:              providers.Can(),
 	providers.CanGetZones:            providers.Can(),
 }
 
@@ -214,6 +214,8 @@ func toRc(domain string, r *domainRecord) *models.RecordConfig {
 		sshfpFingerprint, _ := strconv.ParseUint(r.SshfpFingerprint, 10, 32)
 		rc.SshfpFingerprint = uint8(sshfpFingerprint)
 		rc.SetTarget(r.Target)
+	case "PTR":
+		rc.SetTarget(r.Target+".")
 	default:
 		rc.SetTarget(r.Target)
 	}

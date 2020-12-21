@@ -816,8 +816,8 @@ func makeTests(t *testing.T) []*TestGroup {
 		),
 
 		testgroup("PTR", requires(providers.CanUsePTR), not("ACTIVEDIRECTORY_PS"),
-			tc("Create PTR record", ptr("4", "foo.com.")),
-			tc("Modify PTR record", ptr("4", "bar.com.")),
+			tc("Create PTR record", ptr("@", "foo.com.")),
+			tc("Modify PTR record", ptr("@", "bar.com.")),
 		),
 
 		testgroup("SRV", requires(providers.CanUseSRV), not("ACTIVEDIRECTORY_PS", "CLOUDNS"),
